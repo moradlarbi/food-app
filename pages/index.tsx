@@ -1,11 +1,9 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { request, GraphQLClient, gql } from 'graphql-request'
+import { request, GraphQLClient, gql } from 'graphql-request';
 import { useEffect, useState } from 'react'
 
 
 export default function Home() {
-  const [cards, setCards] = useState([])
+  const [items, setItems] = useState([])
   useEffect(()=> {
     async function fetchData() {
       const endpoint = "/api/graphql"
@@ -24,7 +22,7 @@ export default function Home() {
     }
     fetchData()
     .then(data => {
-      setCards(data.getCards)
+      setItems(data.getCards)
     })
     .catch(console.error);
 
@@ -76,9 +74,9 @@ export default function Home() {
   return (
     <div className=" bg-white flex justify-around items-center w-full min-h-screen">
       {
-                    cards.map((card,index) => {
+                    items.map((item,index) => {
                         return <div className=''>
-                          {card.name}
+                          {item.name}
                         </div>
                     })
                 }
