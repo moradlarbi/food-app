@@ -1,0 +1,10 @@
+.btn:hover img {
+    filter: invert(15%) sepia(8%) saturate(647%) hue-rotate(210deg) brightness(100%) contrast(92%);
+  
+  }
+  .btn img{
+    filter: invert(87%) sepia(13%) saturate(6952%) hue-rotate(313deg) brightness(115%) contrast(108%);
+  }
+  
+  
+  

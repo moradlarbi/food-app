@@ -3,24 +3,32 @@ import {PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient();
 const typeDefs = gql`
-  type Card {
+  type MenuItem {
     id: Int!
-    email: String!
     name: String!
+    category: String!
+    price: Int!
+    link: String!
   }
-  input CardInput {
-    email: String!
-    name: String!
+  type Category {
+    id: Int!
+    category: String!
+    description: String!
   }
-
+  type Blog {
+    id: Int!
+    title: String!
+    content: String!
+    date: String!
+    writer: String!
+    link: String!
+  }
   type Query {
-    getCards: [Card]
-    getCard(id: String!): Card
-  }
-
-  type Mutation {
-    addCard(input: CardInput!): Card
-    deleteCard(id: String!): Card
+    getMenuItems: [MenuItem]
+    getMenuItem(id: String!): MenuItem
+    getCategorys: [Category]
+    getBlogs: [Blog]
+    getBlog(id: String!): Blog
   }
 
 
@@ -28,32 +36,30 @@ const typeDefs = gql`
 const resolvers = {
   //get
   Query: {
-    getCards:async () => {
-      return prisma.card.findMany({
-        take: 10,
+    getMenuItems:async () => {
+      return prisma.menuItem.findMany({
       });
     },
-    getCard: async (parent,args,context) => {
-      console.log(args)
-      return prisma.card.findUnique({
+    getMenuItem: async (parent,args,context) => {
+      return prisma.menuItem.findUnique({
         where: {
           id: Number(args.id),
         }
       })
-    }
-  },
-  Mutation: {
-    //post
-    addCard: async(parent,args) => {
-      return prisma.card.create({
-        data: args.input
-      })
     },
-    //delete
-    deleteCard: async(parent,args) => {
-      return prisma.card.delete({
+    getCategorys:async () => {
+      return prisma.category.findMany({
+        take: 6
+      });
+    },
+    getBlogs:async () => {
+      return prisma.blog.findMany({
+      });
+    },
+    getBlog: async (parent,args,context) => {
+      return prisma.blog.findUnique({
         where: {
-          id: Number(args.id)
+          id: Number(args.id),
         }
       })
     }

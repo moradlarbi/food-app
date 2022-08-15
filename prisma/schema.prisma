@@ -9,9 +9,25 @@ datasource db {
   provider = "sqlite"
   url      = "file:./db.db"
 }
-model Card {
+model Category {
   id      Int      @id @default(autoincrement())
-  email   String
+  category String @unique
+  description String
+}
+
+model MenuItem {
+  id      Int      @id @default(autoincrement())
   name    String
+  category String
+  price Int
+  link String
+}
+model Blog {
+  id      Int      @id @default(autoincrement())
+  title    String
+  content String
+  date String
+  writer String
+  link String
 }
 

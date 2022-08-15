@@ -1,0 +1,27 @@
+.container {
+    background: url("../public/assets/BG.jpg");
+    background-size: cover;
+    width: 100%;
+    padding: 124px 100px;
+    height: 500px;
+    position: relative;
+}
+.container::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(97.28deg, rgba(25, 22, 27, 0.92) 34.6%, rgba(25, 22, 27, 0) 83.17%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+@media only screen and (max-width: 786px) {
+    .container {
+        height: 330px;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
